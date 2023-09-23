@@ -15,7 +15,7 @@ int main()
     vector_func::Point p1(x1, y1, z1);
     vector_func::Point p2(x2, y2, z2);
     vector_func::Vector v1(p1, p2);
-    std::cout << "Вектор, который строится по этим точкам(p1, p2) имеет координаты: x = " 
+    std::cout << "Вектор v1, который строится по этим точкам(p1, p2) имеет координаты: x = " 
         << v1.getX() << " y = " << v1.getY() << " z = " << v1.getZ() << '\n';
 
     std::cout << "Введите значения для вектора v2 через пробел: ";
@@ -30,6 +30,8 @@ int main()
     std::cout << "Вычитание векторов v2 - v1, где координаты x = " <<
         v4.getX() << " y = " << v4.getY() << " z = " << v4.getZ() << '\n';
     vector_func::Vector v5 = vector_func::normalize(v1);
+    std::cout << "Единичный вектор для v1: x = " <<
+        v5.getX() << " y = " << v5.getY() << " z = " << v5.getZ() << '\n';
     vector_func::Vector v6 = -v1;
     std::cout << "Обратный вектор для v1: x = " << 
         v6.getX() << " y = " << v6.getY() << " z = " << v6.getZ() << '\n';
