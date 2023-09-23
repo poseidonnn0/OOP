@@ -2,14 +2,14 @@
 
 namespace vector_func
 {
-    Vector::Vector(const Point& start, const Point& end) // делегируем конструктор для заданных координат точек, если вектор создаётся по точкам
+    Vector::Vector(const Point& start, const Point& end) // РґРµР»РµРіРёСЂСѓРµРј РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ Р·Р°РґР°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚ С‚РѕС‡РµРє, РµСЃР»Рё РІРµРєС‚РѕСЂ СЃРѕР·РґР°С‘С‚СЃСЏ РїРѕ С‚РѕС‡РєР°Рј
     {
         x = end.x - start.x;
         y = end.y - start.y;
         z = end.z - start.z;
     }
 
-    // Операции сложения и вычитания (Переопределяем)
+    // РћРїРµСЂР°С†РёРё СЃР»РѕР¶РµРЅРёСЏ Рё РІС‹С‡РёС‚Р°РЅРёСЏ (РџРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј)
     Vector operator+(const Vector& v1, const Vector& v2)
     {
         return Vector(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
@@ -20,68 +20,68 @@ namespace vector_func
         return Vector(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
     }
 
-    // Получение обратного вектора
+    // РџРѕР»СѓС‡РµРЅРёРµ РѕР±СЂР°С‚РЅРѕРіРѕ РІРµРєС‚РѕСЂР°
     Vector operator-(const Vector& v)
     {
         return Vector(-v.x, -v.y, -v.z);
     }
 
-    // Построение единичного вектора
+    // РџРѕСЃС‚СЂРѕРµРЅРёРµ РµРґРёРЅРёС‡РЅРѕРіРѕ РІРµРєС‚РѕСЂР°
     Vector normalize(const Vector& v)
     {
         double length = std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
         return Vector(v.x / length, v.y / length, v.z / length);
     }
 
-    // Скалярное произведение
+    // РЎРєР°Р»СЏСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ
     double dotProduct(const Vector& v1, const Vector& v2)
     {
         return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
     }
 
-    // Векторное произведение 
+    // Р’РµРєС‚РѕСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ 
     Vector crossProduct(const Vector& v1, const Vector& v2)
     {
         return Vector
-        (v1.y * v2.z - v1.z * v2.y, // на выходе получаем вектор
+        (v1.y * v2.z - v1.z * v2.y, // РЅР° РІС‹С…РѕРґРµ РїРѕР»СѓС‡Р°РµРј РІРµРєС‚РѕСЂ
             v1.z * v2.x - v1.x * v2.z,
             v1.x * v2.y - v1.y * v2.x);
     }
-    // Смешанное произведение (для 3 векторов)
+    // РЎРјРµС€Р°РЅРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ (РґР»СЏ 3 РІРµРєС‚РѕСЂРѕРІ)
     double mixedProduct(const Vector& v1, const Vector& v2, const Vector& v3)
     {
-        return v1.x * (v2.y * v3.z - v3.y * v2.z) // расписываем определитель и получаем число 
+        return v1.x * (v2.y * v3.z - v3.y * v2.z) // СЂР°СЃРїРёСЃС‹РІР°РµРј РѕРїСЂРµРґРµР»РёС‚РµР»СЊ Рё РїРѕР»СѓС‡Р°РµРј С‡РёСЃР»Рѕ 
             - v1.y * (v2.x * v3.z - v3.x * v2.z)
             + v1.z * (v2.x * v3.y - v3.x * v2.y);
     }
 
-    // Длина вектора
+    // Р”Р»РёРЅР° РІРµРєС‚РѕСЂР°
     double length(const Vector& v)
     {
         return std::sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
     }
 
-    // Проверка коллинеарности векторов
+    // РџСЂРѕРІРµСЂРєР° РєРѕР»Р»РёРЅРµР°СЂРЅРѕСЃС‚Рё РІРµРєС‚РѕСЂРѕРІ
     bool areCollinear(const Vector& v1, const Vector& v2)
     {
-        // Векторы коллинеарны, если их векторное произведение равно нулевому вектору
+        // Р’РµРєС‚РѕСЂС‹ РєРѕР»Р»РёРЅРµР°СЂРЅС‹, РµСЃР»Рё РёС… РІРµРєС‚РѕСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ СЂР°РІРЅРѕ РЅСѓР»РµРІРѕРјСѓ РІРµРєС‚РѕСЂСѓ
         return crossProduct(v1, v2).x == 0 && crossProduct(v1, v2).y == 0 && crossProduct(v1, v2).z == 0;
     }
 
-    // Проверка компланарности векторов
+    // РџСЂРѕРІРµСЂРєР° РєРѕРјРїР»Р°РЅР°СЂРЅРѕСЃС‚Рё РІРµРєС‚РѕСЂРѕРІ
     bool areCoplanar(const Vector& v1, const Vector& v2, const Vector& v3)
     {
-        // Векторы компланарны, если их смешанное произведение равно нулю
+        // Р’РµРєС‚РѕСЂС‹ РєРѕРјРїР»Р°РЅР°СЂРЅС‹, РµСЃР»Рё РёС… СЃРјРµС€Р°РЅРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ СЂР°РІРЅРѕ РЅСѓР»СЋ
         return dotProduct(crossProduct(v1, v2), v3) == 0;
     }
 
-    // Расстояние между векторами
+    // Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РІРµРєС‚РѕСЂР°РјРё
     double distance(const Vector& v1, const Vector& v2)
     {
         return length(v2 - v1);
     }
 
-    // Нахождение угла между векторами (в радианах)
+    // РќР°С…РѕР¶РґРµРЅРёРµ СѓРіР»Р° РјРµР¶РґСѓ РІРµРєС‚РѕСЂР°РјРё (РІ СЂР°РґРёР°РЅР°С…)
     double angle(const Vector& v1, const Vector& v2)
     {
         double cosTheta = dotProduct(v1, v2) / (length(v1) * length(v2));
