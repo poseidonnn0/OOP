@@ -9,48 +9,48 @@
 #define __METHODS_H__
 
 #include <iostream>
-#include <functional> // для использования шаблонов функций
+#include <functional> // РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ С€Р°Р±Р»РѕРЅРѕРІ С„СѓРЅРєС†РёР№
 #include <Windows.h>
 #include <cmath>
 
-// Класс NumericalIntegral для интеграции
+// РљР»Р°СЃСЃ NumericalIntegral РґР»СЏ РёРЅС‚РµРіСЂР°С†РёРё
 class NumericalIntegral
 {
 protected:
-    int numPoints; // Число точек
-    double step; // Шаг
-    double tolerance; // Точность
+    int numPoints; // Р§РёСЃР»Рѕ С‚РѕС‡РµРє
+    double step; // РЁР°Рі
+    double tolerance; // РўРѕС‡РЅРѕСЃС‚СЊ
 
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     NumericalIntegral(int nPoints, double h, double tol) : numPoints(nPoints), step(h), tolerance(tol) {}
-    // деструктор создаётся по умолчанию
+    // РґРµСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕР·РґР°С‘С‚СЃСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-    // Чисто виртуальный метод Calc для вычисления интеграла
+    // Р§РёСЃС‚Рѕ РІРёСЂС‚СѓР°Р»СЊРЅС‹Р№ РјРµС‚РѕРґ Calc РґР»СЏ РІС‹С‡РёСЃР»РµРЅРёСЏ РёРЅС‚РµРіСЂР°Р»Р°
     virtual double Calc(std::function<double(double)> f, double lowerBound, double upperBound) = 0;
 };
 
-// Класс TrapezoidalIntegral, наследник класса NumericalIntegral, для численного интегрирования методом трапеций
+// РљР»Р°СЃСЃ TrapezoidalIntegral, РЅР°СЃР»РµРґРЅРёРє РєР»Р°СЃСЃР° NumericalIntegral, РґР»СЏ С‡РёСЃР»РµРЅРЅРѕРіРѕ РёРЅС‚РµРіСЂРёСЂРѕРІР°РЅРёСЏ РјРµС‚РѕРґРѕРј С‚СЂР°РїРµС†РёР№
 class TrapezoidalIntegral : public NumericalIntegral
 {
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     TrapezoidalIntegral(int nPoints, double h, double tol) : NumericalIntegral(nPoints, h, tol) {}
-    // деструктор создаётся по умолчанию
+    // РґРµСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕР·РґР°С‘С‚СЃСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-    // Переопределённый метод Calc для интегрирования методом трапеций
+    // РџРµСЂРµРѕРїСЂРµРґРµР»С‘РЅРЅС‹Р№ РјРµС‚РѕРґ Calc РґР»СЏ РёРЅС‚РµРіСЂРёСЂРѕРІР°РЅРёСЏ РјРµС‚РѕРґРѕРј С‚СЂР°РїРµС†РёР№
     double Calc(std::function<double(double)> f, double lowerBound, double upperBound) override;
 };
 
-// Класс SimpsonIntegral, наследник класса NumericalIntegral, для численного интегрирования методом Симпсона
+// РљР»Р°СЃСЃ SimpsonIntegral, РЅР°СЃР»РµРґРЅРёРє РєР»Р°СЃСЃР° NumericalIntegral, РґР»СЏ С‡РёСЃР»РµРЅРЅРѕРіРѕ РёРЅС‚РµРіСЂРёСЂРѕРІР°РЅРёСЏ РјРµС‚РѕРґРѕРј РЎРёРјРїСЃРѕРЅР°
 class SimpsonIntegral : public NumericalIntegral
 {
 public:
-    // Конструктор
+    // РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     SimpsonIntegral(int nPoints, double h, double tol) : NumericalIntegral(nPoints, h, tol) {}
-    // деструктор создаётся по умолчанию
+    // РґРµСЃС‚СЂСѓРєС‚РѕСЂ СЃРѕР·РґР°С‘С‚СЃСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-    // Переопределённый метод Calc для интегрирования методом Симпсона
+    // РџРµСЂРµРѕРїСЂРµРґРµР»С‘РЅРЅС‹Р№ РјРµС‚РѕРґ Calc РґР»СЏ РёРЅС‚РµРіСЂРёСЂРѕРІР°РЅРёСЏ РјРµС‚РѕРґРѕРј РЎРёРјРїСЃРѕРЅР°
     double Calc(std::function<double(double)> f, double lowerBound, double upperBound) override;
 };
 
