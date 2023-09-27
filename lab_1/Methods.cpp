@@ -1,4 +1,4 @@
-#include "Methods.h"
+#include "Methods.hpp"
 
 double TrapezoidalIntegral::Calc(std::function<double(double)> f, double lowerBound, double upperBound) // переопределяем функцию Calc для Trapezoidal
 {

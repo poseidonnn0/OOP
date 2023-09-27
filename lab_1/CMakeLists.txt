@@ -15,7 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 include_directories("/")
 
 add_executable("${PROJECT_NAME}" lab_1.cpp 
-								Methods.h
+								Methods.hpp
 								Methods.cpp
 									)
 											
