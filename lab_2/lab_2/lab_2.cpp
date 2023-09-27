@@ -5,7 +5,7 @@
 int main() 
 {
     SetConsoleOutputCP(1251); // Для русского языка в консоли
-
+    SetConsoleOutputCP(CP_UTF8);
     // Пример использования классов и операций
     double x1, y1, z1, x2, y2, z2, x3, y3, z3, x7, y7, z7;
     std::cout << "Введите значения для точки p1 через пробел: ";
@@ -32,6 +32,9 @@ int main()
     vector_func::Vector v5 = vector_func::normalize(v1);
     std::cout << "Единичный вектор для v1: x = " <<
         v5.getX() << " y = " << v5.getY() << " z = " << v5.getZ() << '\n';
+    vector_func::Vector v51 = vector_func::crossProduct(v1,v2);
+    std::cout << "Векторное произведение между векторами v1 и v2: x = " <<
+        v51.getX() << " y = " << v51.getY() << " z = " << v51.getZ() << '\n';
     vector_func::Vector v6 = -v1;
     std::cout << "Обратный вектор для v1: x = " << 
         v6.getX() << " y = " << v6.getY() << " z = " << v6.getZ() << '\n';
@@ -57,6 +60,8 @@ int main()
     {
         std::cout << " Вектора v1, v2 и v7 НЕ компланарны!\n";
     }
+
+    std::cout << "Смешанное произведение между вектором v1, v2 и v7 = " << vector_func::mixedProduct(v1, v2, v7) << '\n';
 
     std::cout << "Расстояние между вектором v2 и v7 = " << vector_func::distance(v2, v7) << '\n';
 

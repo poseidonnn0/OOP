@@ -10,28 +10,28 @@
 
 #include <iostream>
 #include <cmath>
-#include <Windows.h>
+#include <windows.h>
 namespace vector_func
 {
-    class Point // используем структуру, чтобы передавать именно данные точки, изначально как public поле
+    class Point // РёСЃРїРѕР»СЊР·СѓРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ, С‡С‚РѕР±С‹ РїРµСЂРµРґР°РІР°С‚СЊ РёРјРµРЅРЅРѕ РґР°РЅРЅС‹Рµ С‚РѕС‡РєРё, РёР·РЅР°С‡Р°Р»СЊРЅРѕ РєР°Рє public РїРѕР»Рµ
     {
-    public:
         double x, y, z;
-        Point(double xValue = 0, double yValue = 0, double zValue = 0) : x(xValue), y(yValue), z(zValue) {} // конструктор точки и определение координат
-        // гет. для получения координат вектора
-        double getX()
+    public:
+        Point(double xValue = 0, double yValue = 0, double zValue = 0) : x(xValue), y(yValue), z(zValue) {} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ С‚РѕС‡РєРё Рё РѕРїСЂРµРґРµР»РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚
+        // РіРµС‚. РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚ РІРµРєС‚РѕСЂР°
+        double getX() const
         {
             return x;
         }
-        double getY()
+        double getY() const
         {
             return y;
         }
-        double getZ()
+        double getZ() const
         {
             return z;
         }
-        // сетеры для изменения координат, если нам это необходимо
+        // СЃРµС‚РµСЂС‹ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚, РµСЃР»Рё РЅР°Рј СЌС‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ
         void setX(double x)
         {
             this->x = x;
@@ -46,32 +46,32 @@ namespace vector_func
         }
     };
 
-    class Vector /*: public Point*/ // класс векторов
+    class Vector /*: public Point*/ // РєР»Р°СЃСЃ РІРµРєС‚РѕСЂРѕРІ
     {
-    public: // т.к. переопределяю операции с векторами, то x, y, z необходимо сделать публичными
         double x, y, z;
-        Vector(double xValue = 0, double yValue = 0, double zValue = 0) : x(xValue), y(yValue), z(zValue) {} // конструктор вектора и определение координат
+    public: // С‚.Рє. РїРµСЂРµРѕРїСЂРµРґРµР»СЏСЋ РѕРїРµСЂР°С†РёРё СЃ РІРµРєС‚РѕСЂР°РјРё, С‚Рѕ x, y, z РЅРµРѕР±С…РѕРґРёРјРѕ СЃРґРµР»Р°С‚СЊ РїСѓР±Р»РёС‡РЅС‹РјРё
+        Vector(double xValue = 0, double yValue = 0, double zValue = 0) : x(xValue), y(yValue), z(zValue) {} // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РІРµРєС‚РѕСЂР° Рё РѕРїСЂРµРґРµР»РµРЅРёРµ РєРѕРѕСЂРґРёРЅР°С‚
 
-        Vector(const Point& start, const Point& end); // делегируем конструктор для заданных координат точек, если вектор создаётся по точкам
+        Vector(const Point& start, const Point& end); // РґРµР»РµРіРёСЂСѓРµРј РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РґР»СЏ Р·Р°РґР°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚ С‚РѕС‡РµРє, РµСЃР»Рё РІРµРєС‚РѕСЂ СЃРѕР·РґР°С‘С‚СЃСЏ РїРѕ С‚РѕС‡РєР°Рј
 
-        ~Vector() {}; // деструктор
-        // гет. для получения координат вектора
-        double getX() 
+        ~Vector() {}; // РґРµСЃС‚СЂСѓРєС‚РѕСЂ
+        // РіРµС‚. РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚ РІРµРєС‚РѕСЂР°
+        double getX() const
         {
             return x;
         }
 
-        double getY()
+        double getY() const
         {
             return y;
         }
 
-        double getZ()
+        double getZ() const
         {
             return z;
         }
-        // сетеры для изменения координат, если нам это необходимо
-        void setX(double x) 
+        // СЃРµС‚РµСЂС‹ РґР»СЏ РёР·РјРµРЅРµРЅРёСЏ РєРѕРѕСЂРґРёРЅР°С‚, РµСЃР»Рё РЅР°Рј СЌС‚Рѕ РЅРµРѕР±С…РѕРґРёРјРѕ
+        void setX(double x)
         {
             this->x = x;
         }
@@ -85,38 +85,39 @@ namespace vector_func
         }
     };
 
-    // Операции сложения и вычитания (Переопределяем)
+    // РћРїРµСЂР°С†РёРё СЃР»РѕР¶РµРЅРёСЏ Рё РІС‹С‡РёС‚Р°РЅРёСЏ (РџРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј)
     Vector operator+(const Vector& v1, const Vector& v2);
     Vector operator-(const Vector& v1, const Vector& v2);
 
-    // Получение обратного вектора
+    // РџРѕР»СѓС‡РµРЅРёРµ РѕР±СЂР°С‚РЅРѕРіРѕ РІРµРєС‚РѕСЂР°
     Vector operator-(const Vector& v);
 
-    // Построение единичного вектора
+    // РџРѕСЃС‚СЂРѕРµРЅРёРµ РµРґРёРЅРёС‡РЅРѕРіРѕ РІРµРєС‚РѕСЂР°
     Vector normalize(const Vector& v);
 
-    // Скалярное произведение
+    // РЎРєР°Р»СЏСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ
     double dotProduct(const Vector& v1, const Vector& v2);
 
-    // Векторное произведение
+    // Р’РµРєС‚РѕСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ
     Vector crossProduct(const Vector& v1, const Vector& v2);
 
-    // Смешанное произведение (для 3 векторов)
+    // РЎРјРµС€Р°РЅРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ (РґР»СЏ 3 РІРµРєС‚РѕСЂРѕРІ)
     double mixedProduct(const Vector& v1, const Vector& v2, const Vector& v3);
 
-    // Длина вектора
+    // Р”Р»РёРЅР° РІРµРєС‚РѕСЂР°
     double length(const Vector& v);
 
-    // Проверка коллинеарности векторов
+    // РџСЂРѕРІРµСЂРєР° РєРѕР»Р»РёРЅРµР°СЂРЅРѕСЃС‚Рё РІРµРєС‚РѕСЂРѕРІ
     bool areCollinear(const Vector& v1, const Vector& v2);
 
-    // Проверка компланарности векторов
+    // РџСЂРѕРІРµСЂРєР° РєРѕРјРїР»Р°РЅР°СЂРЅРѕСЃС‚Рё РІРµРєС‚РѕСЂРѕРІ
     bool areCoplanar(const Vector& v1, const Vector& v2, const Vector& v3);
 
-    // Расстояние между векторами
+    // Р Р°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РІРµРєС‚РѕСЂР°РјРё
     double distance(const Vector& v1, const Vector& v2);
 
-    // Нахождение угла между векторами (в радианах)
+    // РќР°С…РѕР¶РґРµРЅРёРµ СѓРіР»Р° РјРµР¶РґСѓ РІРµРєС‚РѕСЂР°РјРё (РІ СЂР°РґРёР°РЅР°С…)
     double angle(const Vector& v1, const Vector& v2);
+
 }
 #endif
