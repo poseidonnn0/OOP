@@ -26,7 +26,16 @@ add_executable("${PROJECT_NAME}" lab_6.cpp
 								LinControlFactory.h
 								LinLabel.h
 								LinTextBox.h
+								OSButton.h
+								OSComboBox.h
+								OSLabel.h
+								OSTextBox.h
 								OSControlFactory.h
+								WindowsButton.h
+								WindowsComboBox.h
+								WindowsControlFactory.h
+								WindowsLabel.h
+								WindowsTextBox.h
 									)
 											
 target_link_libraries("${PROJECT_NAME}")

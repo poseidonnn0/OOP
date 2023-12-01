@@ -1,10 +1,10 @@
 #pragma once
 #include "ControlFactory.h"
 #include <iostream>
-#include "LinLabel.h"
-#include "LinTextBox.h"
-#include "LinComboBox.h"
-#include "LinButton.h"
+#include "OSLabel.h"
+#include "OSTextBox.h"
+#include "OSComboBox.h"
+#include "OSButton.h"
 
 class OSControlFactory : public ControlFactory 
 {
@@ -20,36 +20,36 @@ public:
 
     Label* createLabel() override 
     {
-        if (osName.find("Linux") != std::string::npos) 
+        if (osName.find("MacOS") != std::string::npos) 
         {
-            return new LinLabel();
+            return new OSLabel();
         }
         return nullptr;
     }
 
     TextBox* createTextBox() override 
     {
-        if (osName.find("Linux") != std::string::npos) 
+        if (osName.find("MacOS") != std::string::npos) 
         {
-            return new LinTextBox();
+            return new OSTextBox();
         }
         return nullptr;
     }
 
     ComboBox* createComboBox() override 
     {
-        if (osName.find("Linux") != std::string::npos) 
+        if (osName.find("MacOS") != std::string::npos) 
         {
-            return new LinComboBox();
+            return new OSComboBox();
         }
         return nullptr;
     }
 
     Button* createButton() override 
     {
-        if (osName.find("Linux") != std::string::npos) 
+        if (osName.find("MacOS") != std::string::npos) 
         {
-            return new LinButton();
+            return new OSButton();
         }
         return nullptr;
     }
